@@ -36,13 +36,22 @@ def main():
 
    # convert new pdfs to images
    target_path = os.path.join(os.path.expanduser('~'), 'Sheet_music')
+   if not os.path.exists(target_path):
+      os.mkdir(target_path)
    source_pdf_path = os.path.join(target_path, 'pdf')
+   if not os.path.exists(source_pdf_path):
+      print(f'{source_pdf_path} did not exist, but was just created. It is currently empty. Please populate')
+      quit()
    new_pdfs = []
    if are_new_pdfs_available(source_pdf_path, target_path, new_pdfs):
       PdfWindowGui(source_pdf_path, target_path, new_pdfs, (int(0.4*screen_width_pixels), int(0.3*screen_height_pixels)))
 
    # get the list of sheet music
    sheet_music_list = [piece for piece in os.listdir(target_path) if len(os.listdir(os.path.join(target_path, piece)))>0 and piece != 'pdf']
+
+   if len(sheet_music_list) == 0:
+      print(f'No pdfs found at {source_pdf_path}. Exiting now')
+      quit()
 
    # format it e.g. Moonlight_Sonata__Beethoven -> Moonlight Sonata Beethoven
    sheet_music_list = sorted([name.replace('__', ' - ').replace('_', ' ') for name in sheet_music_list])
