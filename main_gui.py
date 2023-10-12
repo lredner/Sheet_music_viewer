@@ -1,9 +1,13 @@
-import PySimpleGUI as sg
-from screeninfo import get_monitors
-from pdf_conversion_gui import are_new_pdfs_available, PdfWindowGui
-import os
-import PIL.Image
-import io
+try:
+   import PySimpleGUI as sg
+   from screeninfo import get_monitors
+   from pdf_conversion_gui import are_new_pdfs_available, PdfWindowGui
+   import os
+   import PIL.Image
+   import io
+except ImportError:
+   print('Missing required module. Install requirements.txt')
+   quit()
 
 def convToBytes(image, resize=None):
    img = image.copy()	
@@ -40,6 +44,7 @@ def main():
       os.mkdir(target_path)
    source_pdf_path = os.path.join(target_path, 'pdf')
    if not os.path.exists(source_pdf_path):
+      os.mkdir(source_pdf_path)
       print(f'{source_pdf_path} did not exist, but was just created. It is currently empty. Please populate')
       quit()
    new_pdfs = []

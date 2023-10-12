@@ -1,5 +1,7 @@
 # Install #
-Install normally through git. Add the required packages in the requirements.txt via `pip install requirements.txt`
+Install normally through git. Add the required packages in the requirements.txt via `pip install -r requirements.txt`
+
+Windows users need to install poppler (https://stackoverflow.com/questions/18381713/how-to-install-poppler-on-windows)
 
 # First Run #
 Execute `main_gui.py` from terminal, i.e. `python main_gui.py`

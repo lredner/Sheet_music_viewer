@@ -1,8 +1,12 @@
-import pdf2image
-import os
-from PIL import Image
-import numpy as np
-import copy
+try:
+    import pdf2image
+    import os
+    from PIL import Image
+    import numpy as np
+    import copy
+except ImportError:
+   print('Missing required module. Install requirements.txt')
+   quit()
 
 def convert_new_pdf_to_image(source_path, target_path, pdf):
 
